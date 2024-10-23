@@ -98,7 +98,7 @@ class TestUserInteraction(unittest.TestCase):
         captured_output = io.StringIO()
         sys.stdout = captured_output
 
-        task_3()  # Вызываем task_3 через program1
+        task_3(login)  # Вызываем task_3 через program1
 
         # Reset redirect.
         sys.stdout = sys.__stdout__
