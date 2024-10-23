@@ -1,15 +1,13 @@
 import sys
-
+sys.path.append('C:/project/Esenia Vinogradova/test1')
 import pytest
 import allure
 import unittest
 from unittest.mock import patch
 import io
-
+import program1
 from io import StringIO
-
-from tabulate import tabulate
-from .program1 import program1, task_1, task_2
+from program1 import *
 from test_helper import ObjectMother
 
 
