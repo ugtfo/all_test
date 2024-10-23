@@ -73,7 +73,17 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+      - name: Install Java
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-11-jdk  # Установка Java
           
+      - name: Install Allure
+        run: |
+          sudo apt-get install -y allure  # Установка Allure
+      
+
+
       - name: Run tests
         run: |
           pytest -v --alluredir=allure-results 
