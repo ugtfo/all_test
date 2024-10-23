@@ -89,26 +89,18 @@ class TestUserInteraction(unittest.TestCase):
     @allure.story('Successful task_3 execution')
     @patch.object(DataAccessLayer, 'select')
     def test_task_3_success(self, mock_select):
-        # Устанавливаем значение login через program1
         login = 'user@example.com'
-        
         mock_select.return_value = [{'voucher_id': 1, 'discount': 20}]
-        
-        # Redirect stdout to capture print statements
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
 
-        task_3(login)  # Вызываем task_3 через program1
+        result = task_3(login)  # Вызываем task_3
 
-        # Reset redirect.
-        sys.stdout = sys.__stdout__
-
-        # Check if the mock was called correctly
+        # Проверяем, что mock был вызван правильно
         mock_select.assert_called_once_with('coursework.vouchers', login=login)
 
-        # Verify the output
-        self.assertIn('voucher_id', captured_output.getvalue())
-        self.assertIn('discount', captured_output.getvalue())
+        # Проверяем, что возвращаемое значение содержит нужный voucher_id
+        self.assertIsNotNone(result)  # Убедитесь, что результат не None
+        self.assertIn({'voucher_id': 1, 'discount': 20}, result)  # Проверяем содержимое результата
+
 
 
         
