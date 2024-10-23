@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:/project/Esenia Vinogradova/test1')
+# sys.path.append('C:/project/Esenia Vinogradova/test1')
 from io import StringIO
 import allure
 import unittest

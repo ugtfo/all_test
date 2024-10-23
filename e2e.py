@@ -2,7 +2,7 @@ import sys
 import os
 
 # Добавляем текущую директорию проекта в sys.path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from io import StringIO
 import unittest
 import allure
