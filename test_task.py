@@ -1,13 +1,14 @@
+import os
 import sys
-sys.path.append('C:/project/Esenia Vinogradova/test1')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 import pytest
 import allure
 import unittest
 from unittest.mock import patch
 import io
-import program1
 from io import StringIO
-from program1 import *
+from .program1 import *
+import program1
 from test_helper import ObjectMother
 
 
