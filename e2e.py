@@ -10,8 +10,8 @@ from unittest import mock
 from unittest.mock import patch
 import psycopg2
 
-from program1 import task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8  # Импортируйте необходимые компоненты вашего приложения
-from db import DataAccessLayer
+from . program1 import task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8  # Импортируйте необходимые компоненты вашего приложения
+from . db import DataAccessLayer
 from tabulate import tabulate
 import uuid
 import logging

@@ -8,7 +8,7 @@ import io
 from io import StringIO
 from . import program1
 from . program1 import *
-from test_helper import ObjectMother
+from . test_helper import ObjectMother
 
 
 class TestUserInteraction(unittest.TestCase):
