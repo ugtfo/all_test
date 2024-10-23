@@ -113,4 +113,4 @@ class TestUserInteraction(unittest.TestCase):
 
         
 if __name__ == '__main__':
-    unittest.main()
+    from db import DataAccessLayer 
