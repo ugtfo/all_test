@@ -37,7 +37,7 @@ class TestDatabaseIntegration(unittest.TestCase):
             user="postgres",
             password="12345",
             host="localhost",
-            port="5433"
+            port="5432"
         )
         cls.connection.autocommit = True
 

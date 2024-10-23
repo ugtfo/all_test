@@ -106,3 +106,5 @@ jobs:
         with:
           push: true
           tags: esseniya/testrepo:latest
+           build-args: |
+      --debug
