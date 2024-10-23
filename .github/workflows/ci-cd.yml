@@ -11,39 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: List files in the current directory
-        run: ls -R
+    - name: List files in the current directory
+      run: ls -R  # Выводим содержимое текущего каталог
 
-      - name: Print current working directory
-        run: pwd
+    - name: Print current working directory
+      run: pwd
       
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install flake8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f /home/runner/work/all_test/requirements.txt ]; then
+          pip install -r /home/runner/work/all_test/requirements.txt
+        else
+          echo "requirements.txt не найден!"
+        fi
+        pip install flake8
 
   test:
     runs-on: ubuntu-latest
     needs: flake8-check
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 12345
-          POSTGRES_DB: testdb
-        ports:
-          - 5432:5432
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -53,40 +47,40 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install FFmpeg dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev
+
+
+      - name: List files in the current directory
+        run: ls -R  # Рекурсивный вывод содержимого каталогов
+
+      - name: Find requirements.txt
+        run: find . -name requirements.txt  # Поиск файла requirements.txt
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Wait for PostgreSQL to be ready
+      - name: Start PostgreSQL service
         run: |
-          for i in {30..0}; do
-            if pg_isready -h localhost -p 5432; then
-              echo "PostgreSQL is ready!"
-              break
-            fi
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 1
-          done
-
+          sudo service postgresql start
+          sudo -u postgres psql -c "CREATE DATABASE testdb;"  # Создание тестовой базы данных
+          sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD '12345';"  # Создание пользователя
+          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO postgres;"  # Предоставление прав
+          
       - name: Run tests
         run: |
-          pytest --alluredir=allure-results
+          pytest --alluredir=allure-results  # Запуск тестов и сохранение результатов Allure
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3  # Обновленная версия
         with:
           name: allure-results
           path: allure-results
 
+  # Собрать и отправить образ приложения на DockerHub
   build:
     runs-on: ubuntu-latest
-    needs: test
+    needs: test  # Замените на "test", чтобы зависеть от предыдущего шага
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2 
