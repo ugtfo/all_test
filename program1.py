@@ -1,6 +1,6 @@
 from multiprocessing import connection
 from tabulate import tabulate
-from db import DataAccessLayer
+from . db import DataAccessLayer
 from prettytable import PrettyTable
 # User Interaction Layer
 dal = DataAccessLayer()
