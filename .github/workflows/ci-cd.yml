@@ -77,17 +77,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-11-jdk  # Установка Java
-          
-      - name: Install Allure
+      - name: Download and Install Allure
         run: |
-          sudo apt-get install -y allure  # Установка Allure
-      
-
-
+          curl -o allure.zip -L "https://github.com/allure-framework/allure2/releases/latest/download/allure-2.20.1.zip"  # Загрузка Allure
+          sudo apt-get install -y unzip
+          unzip allure.zip -d /opt/allure
+          sudo ln -s /opt/allure/allure-2.20.1/bin/allure /usr/bin/allure  # Создание символической ссылки
       - name: Run tests
         run: |
-          pytest -v --alluredir=allure-results 
-
+          pytest --alluredir=allure-results
       - name: Generate Allure report
         run: |
           allure generate allure-results -o allure-report --clean
@@ -101,7 +99,6 @@ jobs:
         with:
           name: allure-report
           path: allure-report
-
   # Собрать и отправить образ приложения на DockerHub
   build:
     runs-on: ubuntu-latest
