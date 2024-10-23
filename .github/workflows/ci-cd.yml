@@ -44,7 +44,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 12345
-          POSTGRES_DB: testdb
+          POSTGRES_DB: bob1
         ports:
           - 5433:5433
 
@@ -70,12 +70,6 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Start PostgreSQL service
-        run: |
-          sudo service postgresql start
-          sudo -u postgres psql -c "CREATE DATABASE testdb;"  # Создание тестовой базы данных
-          sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD '12345';"  # Создание пользователя
-          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO postgres;"  # Предоставление прав
           
       - name: Run tests
         run: |
