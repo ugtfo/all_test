@@ -7,8 +7,7 @@ WORKDIR /app
 # Копируем файлы проекта в контейнер
 COPY . .
 
-# Устанавливаем зависимости
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Копируем скрипт в контейнер
 COPY run_all.sh .
