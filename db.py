@@ -99,7 +99,7 @@ class DataAccessLayer(AbstractTable):
             'host': "localhost",
             'user': "postgres",
             'password': "12345",
-            'port': "5433"
+            'port': "5432"
         }
         connection = psycopg2.connect(**self.connection_info)
         super().__init__(connection)
