@@ -66,13 +66,13 @@ jobs:
           sudo -u postgres psql -c "CREATE DATABASE testdb;"  # Создание тестовой базы данных
           sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD '12345';"  # Создание пользователя
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO postgres;"  # Предоставление прав
-
+          
       - name: Run tests
         run: |
           pytest --alluredir=allure-results  # Запуск тестов и сохранение результатов Allure
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Обновленная версия
         with:
           name: allure-results
           path: allure-results
