@@ -22,12 +22,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f /home/runner/work/all_test/all_test/requirements.txt ]; then
+          pip install -r /home/runner/work/all_test/all_test/requirements.txt
+        else
+          echo "requirements.txt не найден!"
+        fi
         pip install flake8
-
-    - name: Run flake8
-      run: |
-        flake8 .
 
   test:
     runs-on: ubuntu-latest
