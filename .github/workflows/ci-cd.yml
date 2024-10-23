@@ -11,23 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install flake8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install flake8
 
-      - name: Run flake8
-        run: |
-          flake8 .
+    - name: Run flake8
+      run: |
+        flake8 .
 
   test:
     runs-on: ubuntu-latest
@@ -41,8 +41,14 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Print working directory 
+      - name: Print current working directory
         run: pwd
+
+      - name: List files in the current directory
+        run: ls -R  # Рекурсивный вывод содержимого каталогов
+
+      - name: Find requirements.txt
+        run: find . -name requirements.txt  # Поиск файла requirements.txt
 
       - name: Install dependencies
         run: |
@@ -55,9 +61,6 @@ jobs:
           sudo -u postgres psql -c "CREATE DATABASE testdb;"  # Создание тестовой базы данных
           sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD '12345';"  # Создание пользователя
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO postgres;"  # Предоставление прав
-
-      - name: List files in the current directory
-        run: ls -R  # Выводим содержимое текущего каталога
 
       - name: Run tests
         run: |
@@ -85,9 +88,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: List files in the Docker context
-        run: ls  # Выводим содержимое текущего каталога в контексте Docker
 
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2 
