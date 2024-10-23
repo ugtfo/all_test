@@ -73,10 +73,10 @@ jobs:
           
       - name: Run tests
         run: |
-          pytest --alluredir=allure-results  # Запуск тестов и сохранение результатов Allure
+          pytest --alluredir=allure-results  
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v3  # Обновленная версия
+        uses: actions/upload-artifact@v3  
         with:
           name: allure-results
           path: allure-results

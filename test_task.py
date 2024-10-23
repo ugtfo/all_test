@@ -5,8 +5,8 @@ import allure
 import unittest
 from unittest.mock import patch
 import io
-import program1
 from io import StringIO
+from . import program1
 from program1 import *
 from test_helper import ObjectMother
 
