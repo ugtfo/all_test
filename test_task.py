@@ -100,6 +100,8 @@ class TestUserInteraction(unittest.TestCase):
         # Проверяем, что возвращаемое значение содержит нужный voucher_id
         self.assertIsNotNone(result)  # Убедитесь, что результат не None
         self.assertIn({'voucher_id': 1, 'discount': 20}, result)  # Проверяем содержимое результата
+        
+    
 
 
 

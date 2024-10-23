@@ -76,13 +76,21 @@ jobs:
           
       - name: Run tests
         run: |
-          pytest --alluredir=allure-results  
+          pytest -v --alluredir=allure-results 
 
+      - name: Generate Allure report
+        run: |
+          allure generate allure-results -o allure-report --clean
       - name: Upload Allure results
         uses: actions/upload-artifact@v3  
         with:
           name: allure-results
           path: allure-results
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
 
   # Собрать и отправить образ приложения на DockerHub
   build:
@@ -106,4 +114,10 @@ jobs:
         with:
           push: true
           tags: esseniya/testrepo:latest
+
+      # - name: Set environment variable
+      #   run: echo "DOCKER_IMAGE=esseniya/testrepo:latest" >> $GITHUB_ENV
+
+      # - name: Use the environment variable
+      #   run: echo "Image pushed: ${{ env.DOCKER_IMAGE }}"
 
