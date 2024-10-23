@@ -38,6 +38,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: flake8-check
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 12345
+          POSTGRES_DB: testdb
+        ports:
+          - 5433:5433
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
