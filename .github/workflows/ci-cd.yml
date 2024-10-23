@@ -35,6 +35,9 @@ jobs:
         fi
         pip install flake8
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
+
   test:
     runs-on: ubuntu-latest
     needs: flake8-check
