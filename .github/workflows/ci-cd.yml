@@ -77,23 +77,26 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-11-jdk  # Установка Java
-      - name: Download and Install Allure
+      - name: Install wget
+        run: sudo apt-get install -y wget  # Установка wget, если он не установлен
+      - name: Download Allurectl
         run: |
-          curl -o allure.zip -L "https://github.com/allure-framework/allure2/releases/latest/download/allure-2.20.1.zip"  # Загрузка Allure
-          sudo apt-get install -y unzip
-          unzip allure.zip -d /opt/allure
-          sudo ln -s /opt/allure/allure-2.20.1/bin/allure /usr/bin/allure  # Создание символической ссылки
+          wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
+          chmod +x ./allurectl
+      - name: Login to Allure
+        run: ./allurectl auth login  # Аутентификация в Allure
       - name: Run tests
         run: |
-          pytest --alluredir=allure-results
-      - name: Generate Allure report
-        run: |
-          allure generate allure-results -o allure-report --clean
+          mvn clean test site  # Выполнение тестов, если вы используете Maven
+          ./allurectl watch --results target/allure-results -- mvn clean test site  # Запуск Allurectl
       - name: Upload Allure results
         uses: actions/upload-artifact@v3  
         with:
           name: allure-results
-          path: allure-results
+          path: target/allure-results  # Убедитесь, что путь к результатам тестирования корректен
+      - name: Generate Allure report
+        run: |
+          allure generate target/allure-results -o allure-report --clean  # Генерация отчета Allure
       - name: Upload Allure report
         uses: actions/upload-artifact@v3
         with:
