@@ -8,6 +8,8 @@ import io
 from io import StringIO
 from . program1 import *
 from . test_helper import ObjectMother
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import program1
 
 
