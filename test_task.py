@@ -9,7 +9,7 @@ import io
 from io import StringIO
 
 from tabulate import tabulate
-from . program1 import program1, task_1, task_2
+from .program1 import program1, task_1, task_2
 from test_helper import ObjectMother
 
 
