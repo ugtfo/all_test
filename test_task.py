@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import pytest
 import allure
 import unittest
@@ -10,7 +10,7 @@ from io import StringIO
 from program1 import task_1, task_2, task_3, DataAccessLayer
 from test_helper import ObjectMother
 
-
+print(sys.path) 
 class TestUserInteraction(unittest.TestCase):
     @allure.feature('Data Access Layer Interaction')
     @allure.story('Successful task_1 execution')
