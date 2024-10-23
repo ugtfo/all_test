@@ -54,7 +54,7 @@ jobs:
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO postgres;"  # Предоставление прав
 
       - name: List files in the current directory
-        run: ls -R   # Выводим содержимое текущего каталога
+        run: ls -R /home/runner/work/all_test/all_test # Выводим содержимое текущего каталога
 
       - name: Run tests
         run: |
