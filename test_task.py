@@ -7,8 +7,8 @@ import unittest
 from unittest.mock import patch
 import io
 from io import StringIO
-from program1 import task_1, task_2, task_3, DataAccessLayer
-from test_helper import ObjectMother
+from .program1 import task_1, task_2, task_3, DataAccessLayer
+from .test_helper import ObjectMother
 
 print(sys.path) 
 class TestUserInteraction(unittest.TestCase):
