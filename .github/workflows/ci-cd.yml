@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install allure-pytest
-
+          
       - name: Create allure-results directory
         run: mkdir -p allure-results
 
@@ -50,6 +50,18 @@ jobs:
         with:
           name: allure-results
           path: allure-results
+
+      - name: Get Allure Artifact ID
+        id: get_artifact_id
+        run: |
+          ARTIFACT_NAME="allure-results"
+          API_URL="https://api.github.com/repos/${{ github.repository }}/actions/artifacts"
+          ARTIFACT_ID=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $API_URL | jq -r --arg NAME "$ARTIFACT_NAME" '.artifacts[] | select(.name == $NAME) | .id')
+          echo "Artifact ID: $ARTIFACT_ID"
+          echo "artifact_id=$ARTIFACT_ID" >> $GITHUB_ENV
+
+      - name: Display Artifact ID
+        run: echo "Allure Artifact ID: ${{ env.artifact_id }}"
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
@@ -104,6 +116,18 @@ jobs:
         with:
           name: allure-results
           path: allure-results
+
+      - name: Get Allure Artifact ID
+        id: get_artifact_id
+        run: |
+          ARTIFACT_NAME="allure-results"
+          API_URL="https://api.github.com/repos/${{ github.repository }}/actions/artifacts"
+          ARTIFACT_ID=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $API_URL | jq -r --arg NAME "$ARTIFACT_NAME" '.artifacts[] | select(.name == $NAME) | .id')
+          echo "Artifact ID: $ARTIFACT_ID"
+          echo "artifact_id=$ARTIFACT_ID" >> $GITHUB_ENV
+
+      - name: Display Artifact ID
+        run: echo "Allure Artifact ID: ${{ env.artifact_id }}"
 
   publish:
     runs-on: ubuntu-latest
