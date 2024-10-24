@@ -17,11 +17,6 @@ on:
       - gh-pages
   pull_request:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
   flake8-check:
     runs-on: ubuntu-latest
@@ -44,16 +39,17 @@ jobs:
       - name: Create allure-results directory
         run: mkdir -p allure-results
 
-      - name: Run first test if selected
-        if: ${{ github.event.inputs.deployment_target == 'first_test' || github.event.inputs.deployment_target == 'all' }}
-        run: pytest test_task.py --alluredir=$(pwd)/allure-results || exit 0
+      - name: Run tests
+        run: pytest test_task.py --alluredir=allure-results || exit 0
+
+      - name: Check if allure-results were generated
+        run: ls -R allure-results
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v3
         with:
           name: allure-results
           path: allure-results
-
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
