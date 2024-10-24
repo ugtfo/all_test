@@ -50,12 +50,20 @@ jobs:
           fi
           pip install flake8
 
-      - name: Create database
+      - name: Wait for PostgreSQL
         run: |
           echo "Waiting for PostgreSQL to start..."
-          sleep 10  # Дождитесь, пока контейнер PostgreSQL полностью запустится
+          for i in {1..30}; do
+            if psql -h postgres -U postgres -c "SELECT 1;" > /dev/null 2>&1; then
+              echo "PostgreSQL is up!"
+              break
+            fi
+            echo "PostgreSQL is unavailable - sleeping"
+            sleep 1
+          done
           echo "Creating database bob1..."
           psql -h postgres -U postgres -c "CREATE DATABASE bob1;"
+
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
