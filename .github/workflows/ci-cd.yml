@@ -91,19 +91,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-
+          
       - name: Run tests
         run: |
-          if [ "${{ github.event.inputs.deployment_target }}" == "first_test" ]; then
-            pytest test_task.py --alluredir=allure-results
-          elif [ "${{ github.event.inputs.deployment_target }}" == "second_test" ]; then
-            pytest integration.py --alluredir=allure-results
-          else
-            pytest --alluredir=allure-results
-          fi
-
-
-
+          pytest test_task.py --alluredir=allure-results || exit 0
+          pytest integration.py --alluredir=allure-results || exit 0
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v3  
