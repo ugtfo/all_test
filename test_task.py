@@ -23,6 +23,7 @@ class TestUserInteraction(unittest.TestCase):
             task_1()
             mock_select.assert_called_once_with('coursework.accounts', type_role='художник', surname='Smith', firstname='John', patronymic='Doe')
 
+    @pytest.mark.test_task  # Используем маркер здесь
     @allure.feature('Data Access Layer Interaction')
     @allure.story('Failure in task_1 execution')    
     @patch.object(DataAccessLayer, 'select')
@@ -42,7 +43,7 @@ class TestUserInteraction(unittest.TestCase):
         # Check if the expected output is in the captured output
         self.assertIn("Database operation failed", captured_output.getvalue())
 
-
+    @pytest.mark.test_task  # Используем маркер здесь
     @allure.feature('Data Access Layer Interaction')
     @allure.story('Successful task_2 execution')
     @patch.object(DataAccessLayer, 'select')
@@ -65,7 +66,7 @@ class TestUserInteraction(unittest.TestCase):
             self.assertIn('Smith', captured_output.getvalue())
             self.assertIn('John', captured_output.getvalue())
             
-            
+    @pytest.mark.test_task  # Используем маркер здесь           
     @allure.feature('Data Access Layer Interaction')
     @allure.story('Failure in task_2 execution')
     @patch.object(DataAccessLayer, 'select')
@@ -84,7 +85,7 @@ class TestUserInteraction(unittest.TestCase):
         # Check if the expected output is in the captured output
         self.assertIn("Database operation failed", captured_output.getvalue())
 
-
+    @pytest.mark.test_task  # Используем маркер здесь
     @allure.feature('Data Access Layer Interaction')
     @allure.story('Successful task_3 execution')
     @patch.object(DataAccessLayer, 'select')
