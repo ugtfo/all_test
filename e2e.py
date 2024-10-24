@@ -49,7 +49,7 @@ class TestDatabaseIntegration(unittest.TestCase):
                 
         # Создание подключения к PostgreSQL
         cls.connection = psycopg2.connect(
-            database="bob1",  # Соединяемся с основной базой данных
+            database="testdb",  # Соединяемся с основной базой данных
             user="postgres",
             password="12345",  # Убедитесь, что здесь правильный пароль
             host="localhost",
