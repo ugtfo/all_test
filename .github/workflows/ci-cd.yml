@@ -76,24 +76,27 @@ jobs:
       - name: Install Java
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk  # Установка Java
+          sudo apt-get install -y openjdk-17-jdk
+
       - name: Install wget and Allure
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget
-          wget https://github.com/allure-framework/allure2/releases/download/2.31.0/allure-2.31.0.zip  # Замените на актуальную версию
-          sudo apt-get install -y unzip
+          sudo apt-get install -y wget unzip
+          wget https://github.com/allure-framework/allure2/releases/download/2.31.0/allure-2.31.0.zip -O allure.zip
           unzip allure.zip -d /opt/allure
-          echo 'export PATH=$PATH:/opt/allure/allure-2.20.1/bin' >> $GITHUB_ENV  # Добавляем Allure в PATH
+          echo 'export PATH=$PATH:/opt/allure/allure-2.31.0/bin' >> $GITHUB_ENV  # Исправлено на правильную версию
+
       - name: Run tests
         run: |
-          mvn clean test site  # Выполнение тестов с помощью Maven
-          allure generate target/allure-results -o allure-report --clean  # Генерация отчета Allure
+          mvn clean test site
+          allure generate target/allure-results -o allure-report --clean
+
       - name: Upload Allure results
         uses: actions/upload-artifact@v3  
         with:
           name: allure-results
-          path: target/allure-results  # Убедитесь, что путь к результатам тестирования корректен
+          path: target/allure-results  
+
       - name: Upload Allure report
         uses: actions/upload-artifact@v3
         with:
