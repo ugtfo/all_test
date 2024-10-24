@@ -81,7 +81,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y wget
-          wget https://github.com/allure-framework/allure2/releases/download/2.31.0/allure-2.31.0.tgz  # Замените на актуальную версию
+          wget https://github.com/allure-framework/allure2/releases/download/2.31.0/allure-2.31.0.zip  # Замените на актуальную версию
           sudo apt-get install -y unzip
           unzip allure.zip -d /opt/allure
           echo 'export PATH=$PATH:/opt/allure/allure-2.20.1/bin' >> $GITHUB_ENV  # Добавляем Allure в PATH
