@@ -49,13 +49,13 @@ jobs:
             echo "requirements.txt не найден!"
           fi
           pip install flake8
-          
+
       - name: Create database
         run: |
           echo "Waiting for PostgreSQL to start..."
           sleep 10  # Дождитесь, пока контейнер PostgreSQL полностью запустится
           echo "Creating database bob1..."
-          psql -h localhost -U postgres -c "CREATE DATABASE bob1;" -d testdb
+          psql -h postgres -U postgres -c "CREATE DATABASE bob1;"
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
