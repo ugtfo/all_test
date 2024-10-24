@@ -78,13 +78,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Install wget and Allure
-        run: |
-          apt-get update
-          apt-get install -y wget unzip
-          wget https://github.com/allure-framework/allure2/releases/download/2.31.0/allure-2.31.0.zip -O allure.zip
-          unzip allure.zip -d /opt/allure
-          echo 'export PATH=$PATH:/opt/allure/allure-2.31.0/bin' >> $GITHUB_ENV
+      - name: Set up Allure
+        uses: allure-framework/allure2-action@v2.31.0  # Укажите последнюю версию
 
       - name: Run tests
         run: |
