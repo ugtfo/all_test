@@ -74,15 +74,15 @@ jobs:
      
       - name: Install Java
         run: |
-          sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk
+          apt-get update
+          apt-get install -y openjdk-17-jdk
           echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV  # Установка JAVA_HOME
           echo "PATH=\$JAVA_HOME/bin:\$PATH" >> $GITHUB_ENV  # Добавление JAVA_HOME в PATH
 
       - name: Install wget and Allure
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
+          apt-get update
+          apt-get install -y wget unzip
           wget https://github.com/allure-framework/allure2/releases/download/2.31.0/allure-2.31.0.zip -O allure.zip
           unzip allure.zip -d /opt/allure
           echo 'export PATH=$PATH:/opt/allure/allure-2.31.0/bin' >> $GITHUB_ENV
