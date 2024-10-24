@@ -30,12 +30,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: List files in the current directory
-        run: ls -R
-
-      - name: Print current working directory
-        run: pwd
-      
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -44,12 +38,22 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            echo "requirements.txt не найден!"
-          fi
-          pip install flake8
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install allure-pytest
+
+      - name: Create allure-results directory
+        run: mkdir -p allure-results
+
+      - name: Run first test if selected
+        if: ${{ github.event.inputs.deployment_target == 'first_test' || github.event.inputs.deployment_target == 'all' }}
+        run: pytest test_task.py --alluredir=$(pwd)/allure-results || exit 0
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: allure-results
+
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
