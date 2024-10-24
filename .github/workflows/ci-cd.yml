@@ -71,11 +71,13 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+     
       - name: Install Java
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jdk
-          echo 'JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"' >> $GITHUB_ENV  # Установка JAVA_HOME
+          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV  # Установка JAVA_HOME
+          echo "PATH=\$JAVA_HOME/bin:\$PATH" >> $GITHUB_ENV  # Добавление JAVA_HOME в PATH
 
       - name: Install wget and Allure
         run: |
