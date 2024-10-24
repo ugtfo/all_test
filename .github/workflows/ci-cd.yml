@@ -79,7 +79,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Set up Allure
-        uses: allure-framework/allure2-action@v2.31.0  # Укажите последнюю версию
+        uses: allure-framework/allure2-action@v2.8.1  # Укажите последнюю версию
 
       - name: Run tests
         run: |
