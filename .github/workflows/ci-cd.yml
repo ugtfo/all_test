@@ -143,6 +143,20 @@ jobs:
         if: ${{ github.event.inputs.deployment_target == 'all' }}
         run: pytest e2e.py --alluredir=allure-results || exit 0
 
+      - name: Debug copy operation
+        run: |
+          set -x  # Enable debugging
+          echo "Listing pages_history directory..."
+          ls -R pages_history
+          if [ -d "pages_history/history" ]; then
+            echo "Copying files from pages_history/history to allure-results..."
+            cp pages_history/history/* allure-results || true
+            cp -r pages_history/history allure-results || true
+          else
+            echo "Directory pages_history/history does not exist."
+          fi
+
+
       - name: Upload Allure results
         uses: actions/upload-artifact@v3
         with:
