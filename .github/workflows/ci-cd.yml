@@ -105,6 +105,9 @@ jobs:
           name: allure-results
           path: allure-results
 
+      - name: Check allure-results contents
+        run: ls -la allure-results
+
   publish:
     runs-on: ubuntu-latest
     needs: test
@@ -122,12 +125,12 @@ jobs:
         with:
           gh_pages: gh-pages
           allure_history: allure-history
-          allure_results: allure-results
+          allure_results: allure-results # Исправлено на правильный путь к результатам
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
           publish_branch: gh-pages-deploy 
           publish_dir: allure-history
 
