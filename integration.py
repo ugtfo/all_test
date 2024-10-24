@@ -5,8 +5,8 @@ import allure
 import unittest
 from unittest.mock import patch
 import psycopg2
-from program1 import task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8, task_9
-from db import DataAccessLayer
+from . program1 import task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8, task_9
+from . db import DataAccessLayer
 from tabulate import tabulate
 import uuid
 import logging
