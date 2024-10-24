@@ -72,12 +72,11 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
      
-      - name: Install Java
-        run: |
-          apt-get update
-          apt-get install -y openjdk-17-jdk
-          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV  # Установка JAVA_HOME
-          echo "PATH=\$JAVA_HOME/bin:\$PATH" >> $GITHUB_ENV  # Добавление JAVA_HOME в PATH
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
 
       - name: Install wget and Allure
         run: |
