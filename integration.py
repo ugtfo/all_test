@@ -29,28 +29,28 @@ class TestDatabaseIntegration(unittest.TestCase):
                 logging.StreamHandler(sys.stdout)  # Лог в консоль (stdout)
             ]
         )
-        cls.logger = logging.getLogger(__name__)
-        cls.logger.info("Настройка тестов E2E началась")
-        # Создание подключения к PostgreSQL
-        cls.connection = psycopg2.connect(
-            database="bob1",  # Соединяемся с основной базой данных
-            user="postgres",
-            password="12345",
-            host="localhost",
-            port="5432"
-        )
-        cls.connection.autocommit = True
+        # cls.logger = logging.getLogger(__name__)
+        # cls.logger.info("Настройка тестов E2E началась")
+        # # Создание подключения к PostgreSQL
+        # cls.connection = psycopg2.connect(
+        #     database="bob1",  # Соединяемся с основной базой данных
+        #     user="postgres",
+        #     password="12345",
+        #     host="localhost",
+        #     port="5432"
+        # )
+        # cls.connection.autocommit = True
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.drop_test_database()  # Удаление тестовой базы данных
-        if cls.connection:
-            cls.connection.close()  # Закрытие соединения
+    # @classmethod
+    # def tearDownClass(cls):
+    #     cls.drop_test_database()  # Удаление тестовой базы данных
+    #     if cls.connection:
+    #         cls.connection.close()  # Закрытие соединения
 
-    @classmethod
-    def drop_test_database(cls):
-        with cls.connection.cursor() as cur:
-            cur.execute("DROP DATABASE IF EXISTS test_db")
+    # @classmethod
+    # def drop_test_database(cls):
+    #     with cls.connection.cursor() as cur:
+    #         cur.execute("DROP DATABASE IF EXISTS test_db")
 
     def setUp(self):
         self.dal = DataAccessLayer()
