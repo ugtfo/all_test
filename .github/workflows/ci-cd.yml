@@ -19,6 +19,8 @@ on:
 
 permissions:
   contents: write  # Обеспечьте разрешения на запись
+  pages: write
+  id-token: write
 jobs:
   flake8-check:
     runs-on: ubuntu-latest
@@ -93,12 +95,13 @@ jobs:
       - name: Run tests
         run: |
           if [ "${{ github.event.inputs.deployment_target }}" == "first_test" ]; then
-            pytest test_task.py::test_task_exist --alluredir=allure-results
+            pytest test_task.py --alluredir=allure-results
           elif [ "${{ github.event.inputs.deployment_target }}" == "second_test" ]; then
-            pytest integration.py::test_task_exist_2 --alluredir=allure-results
+            pytest integration.py --alluredir=allure-results
           else
             pytest --alluredir=allure-results
           fi
+
 
 
 
