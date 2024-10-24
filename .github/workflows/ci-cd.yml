@@ -69,6 +69,16 @@ jobs:
         ports:
           - 5432:5432
 
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 12345
+          POSTGRES_DB: bob1
+        ports:
+          - 5432:5432
+
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
