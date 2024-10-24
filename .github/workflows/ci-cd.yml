@@ -1,6 +1,17 @@
 name: CI/CD
 
 on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: 'Target for deployment'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - first_test
+          - second_test
+          - all
   push:
     branches:
       - gh-pages
@@ -81,7 +92,14 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest --alluredir=allure-results  
+          if [ "${{ github.event.inputs.deployment_target }}" == "first_test" ]; then
+            pytest test_task.py::test_task_exist --alluredir=allure-results
+          elif [ "${{ github.event.inputs.deployment_target }}" == "second_test" ]; then
+            pytest integration.py::test_task_exist_2 --alluredir=allure-results
+          else
+            pytest --alluredir=allure-results
+          fi
+
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v3  
