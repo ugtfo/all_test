@@ -18,9 +18,10 @@ on:
   pull_request:
 
 permissions:
-  contents: write  # Обеспечьте разрешения на запись
+  contents: write
   pages: write
   id-token: write
+
 jobs:
   flake8-check:
     runs-on: ubuntu-latest
@@ -50,9 +51,6 @@ jobs:
           fi
           pip install flake8
 
-
-
-
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  
 
@@ -69,7 +67,6 @@ jobs:
         ports:
           - 5432:5432
 
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -78,12 +75,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
-
-      - name: List files in the current directory
-        run: ls -R
-
-      - name: Find requirements.txt
-        run: find . -name requirements.txt
 
       - name: Install dependencies
         run: |
@@ -96,14 +87,20 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Run tests
-        run: |
-          pytest test_task.py --alluredir=allure-results || exit 0
-          pytest integration.py --alluredir=allure-results || exit 0
-          pytest e2e.py --alluredir=allure-results || exit 0
+      - name: Run first test if selected
+        if: ${{ github.event.inputs.deployment_target == 'first_test' || github.event.inputs.deployment_target == 'all' }}
+        run: pytest test_task.py --alluredir=allure-results || exit 0
+
+      - name: Run second test if selected
+        if: ${{ github.event.inputs.deployment_target == 'second_test' || github.event.inputs.deployment_target == 'all' }}
+        run: pytest integration.py --alluredir=allure-results || exit 0
+
+      - name: Run third test if all is selected
+        if: ${{ github.event.inputs.deployment_target == 'all' }}
+        run: pytest e2e.py --alluredir=allure-results || exit 0
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v3  
+        uses: actions/upload-artifact@v3
         with:
           name: allure-results
           path: allure-results
@@ -119,7 +116,6 @@ jobs:
         with:
           ref: gh-pages
         
-
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.7
         if: always()
