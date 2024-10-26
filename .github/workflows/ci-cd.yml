@@ -61,7 +61,7 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 1234
+          POSTGRES_PASSWORD: 12345
           POSTGRES_DB: testdb
         ports:
           - 5432:5432
@@ -87,15 +87,15 @@ jobs:
 
       - name: Run first test if selected
         if: ${{ github.event.inputs.deployment_target == 'first_test' || github.event.inputs.deployment_target == 'all' }}
-        run: pytest test_task.py --alluredir=allure-results || exit 0
+        run: pytest test_task.py --alluredir=allure-results || exit 1
 
       - name: Run second test if selected
         if: ${{ github.event.inputs.deployment_target == 'second_test' || github.event.inputs.deployment_target == 'all' }}
-        run: pytest integration.py --alluredir=allure-results || exit 0
+        run: pytest integration.py --alluredir=allure-results || exit 1
 
       - name: Run third test if all is selected
         if: ${{ github.event.inputs.deployment_target == 'all' }}
-        run: pytest e2e.py --alluredir=allure-results || exit 0
+        run: pytest e2e.py --alluredir=allure-results || exit 1
 
       - name: Upload Allure results
         uses: actions/upload-artifact@v3
