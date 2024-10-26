@@ -85,9 +85,12 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+
       - name: Run first test if selected
         if: ${{ github.event.inputs.deployment_target == 'first_tests' || github.event.inputs.deployment_target == 'alls' }}
-        run: exit 1
+        run: |
+          echo "This step fail."
+          exit 1
 
       - name: Run second test if selected
         if: ${{ github.event.inputs.deployment_target == 'second_test' || github.event.inputs.deployment_target == 'all' }}
