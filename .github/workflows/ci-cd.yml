@@ -39,7 +39,7 @@ jobs:
         run: mkdir -p allure-results
 
       - name: Run tests
-        run: pytest test_task.py --alluredir=allure-results || exit 0
+        run: pytest tests_task.py --alluredir=allure-results || exit 1
 
       - name: Check if allure-results were generated
         run: ls -R allure-results
