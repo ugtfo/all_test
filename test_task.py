@@ -89,19 +89,19 @@ class TestUserInteraction(unittest.TestCase):
     @allure.feature('Data Access Layer Interaction')
     @allure.story('Successful task_3 execution')
     @patch.object(DataAccessLayer, 'select')
-    ##def test_task_3_success(self, mock_select):
-        l##ogin = 'user@example.com'
-        ##mock_select.return_value = [{'voucher_id': 1, 'discount': 20}]
+    def test_task_3_success(self, mock_select):
+        login = 'user@example.com'
+        mock_select.return_value = [{'voucher_id': 1, 'discount': 20}]
 
-        ##result = task_3(login)  # Вызываем task_3
+        result = task_3(login)  # Вызываем task_3
 
-        ## # Проверяем, что mock был вызван правильно
-        ##mock_select.assert_called_once_with('coursework.vouchers', login=login)
+        # Проверяем, что mock был вызван правильно
+        mock_select.assert_called_once_with('coursework.vouchers', login=login)
 
-        ## # Проверяем, что возвращаемое значение содержит нужный voucher_id
-        ##self.assertIsNotNone(result)  # Убедитесь, что результат не None
+        # Проверяем, что возвращаемое значение содержит нужный voucher_id
+        self.assertIsNotNone(result)  # Убедитесь, что результат не None
         ##self.assertIn({'voucher_id': 1, 'discount': 20}, result)  # Проверяем содержимое результата
-        ##self.assertIn({'voucher_id': 1, 'discount': 20}, None)  # Проверяем заведомо неправильное содержимое результата
+        self.assertIn({'voucher_id': 1, 'discount': 20}, None)  # Проверяем заведомо неправильное содержимое результата
         
     
 
