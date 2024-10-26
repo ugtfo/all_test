@@ -39,7 +39,7 @@ jobs:
         run: mkdir -p allure-results
 
       - name: Run tests
-        run: pytest tests_task.py --alluredir=allure-results || exit 1
+        run: pytest test_task.py --alluredir=allure-results || exit 1
 
       - name: Check if allure-results were generated
         run: ls -R allure-results
@@ -87,7 +87,7 @@ jobs:
 
       - name: Run first test if selected
         if: ${{ github.event.inputs.deployment_target == 'first_test' || github.event.inputs.deployment_target == 'all' }}
-        run: pytest test_task.py --alluredir=allure-results || exit 1
+        run: pytest test_task --alluredir=allure-results || exit 1
 
       - name: Run second test if selected
         if: ${{ github.event.inputs.deployment_target == 'second_test' || github.event.inputs.deployment_target == 'all' }}
