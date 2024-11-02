@@ -249,7 +249,8 @@ class TestDatabaseIntegration(unittest.TestCase):
             self.assertIn("Введите id выставки (от 1 до 100):", output) 
             
             # Проверяем, что выводимое сообщение верно
-            self.assertIn(f"Запись с id={test_id} не найдена.", output) 
+            ##self.assertIn(f"Запись с id={test_id} не найдена.", output)
+            self.assertIn(f"Запись с id={test_id} не найдена.", None) ## заведомая ошибка в тесте
        
        
     @allure.step("Проверка работы task_9_i")            
