@@ -1,0 +1,120 @@
+2024-10-24 16:13:38,944 - INFO - Настройка тестов E2E началась
+2024-10-24 16:13:39,072 - INFO - Creating tables...
+2024-10-24 16:13:39,221 - INFO - Tables created.
+2024-10-24 16:13:39,235 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:39,235 - INFO - Начинается тест test_task_1_i
+2024-10-24 16:13:39,240 - INFO - Вывод test_task_1_i: login                 salt    hashed_password    surname    firstname    patronymic    date_of_birth    sex      mobile_phone  email                  type_role
+--------------------  ------  -----------------  ---------  -----------  ------------  ---------------  -----  --------------  ---------------------  -----------
+ivanov_eb3aad03-d211                             Иванов     Иван         Иванович      1990-01-01       м          1234567890  ivanov123@example.com  художник
+
+2024-10-24 16:13:39,241 - INFO - Тест test_task_1_e2e завершен успешно
+2024-10-24 16:13:39,317 - INFO - Creating tables...
+2024-10-24 16:13:39,430 - INFO - Tables created.
+2024-10-24 16:13:39,440 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:39,516 - INFO - Creating tables...
+2024-10-24 16:13:39,625 - INFO - Tables created.
+2024-10-24 16:13:39,634 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:39,711 - INFO - Creating tables...
+2024-10-24 16:13:39,818 - INFO - Tables created.
+2024-10-24 16:13:39,827 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:39,907 - INFO - Creating tables...
+2024-10-24 16:13:40,008 - INFO - Tables created.
+2024-10-24 16:13:40,017 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:40,017 - INFO - Starting test_task_5_i
+2024-10-24 16:13:40,022 - INFO - Voucher with id 1 has been deleted successfully.
+2024-10-24 16:13:40,024 - INFO - Visitor with id 1 has been deleted successfully.
+2024-10-24 16:13:40,106 - INFO - Creating tables...
+2024-10-24 16:13:40,210 - INFO - Tables created.
+2024-10-24 16:13:40,220 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:40,226 - INFO - Вывод функции:
+  id    price  description
+   2      100  Описание
+2024-10-24 16:13:40,296 - INFO - Creating tables...
+2024-10-24 16:13:40,405 - INFO - Tables created.
+2024-10-24 16:13:40,415 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:40,415 - INFO - Starting task_7 function
+2024-10-24 16:13:40,416 - INFO - User entered id: 1
+2024-10-24 16:13:40,416 - INFO - Executing database query...
+2024-10-24 16:13:40,417 - INFO - Query result: [{'id': 1, 'login': 'ivanov_9f424a87-6438', 'days': 5, 'pictures': 3, 'status': 'ждет', 'price': Decimal('100'), 'ticket_num': None, 'id_visitor': 1, 'id_pricelist': 1, 'is_relevant': None}]
+2024-10-24 16:13:40,418 - INFO - Displaying result in table format
+2024-10-24 16:13:40,418 - INFO - Finished task_7 function
+2024-10-24 16:13:40,493 - INFO - Creating tables...
+2024-10-24 16:13:40,600 - INFO - Tables created.
+2024-10-24 16:13:40,611 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:40,612 - INFO - Starting task_7 function
+2024-10-24 16:13:40,612 - INFO - User entered id: 999
+2024-10-24 16:13:40,612 - INFO - Executing database query...
+2024-10-24 16:13:40,612 - INFO - Query result: []
+2024-10-24 16:13:40,614 - WARNING - Запись с id=999 не найдена.
+2024-10-24 16:13:40,614 - INFO - Finished task_7 function
+2024-10-24 16:13:40,682 - INFO - Creating tables...
+2024-10-24 16:13:40,787 - INFO - Tables created.
+2024-10-24 16:13:40,797 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:40,797 - INFO - Начинается тест test_task_8_i
+2024-10-24 16:13:40,802 - INFO - Пользователь ввел id: 1
+2024-10-24 16:13:40,874 - INFO - Creating tables...
+2024-10-24 16:13:40,985 - INFO - Tables created.
+2024-10-24 16:13:40,994 - INFO - Тестовая среда настроена.
+2024-10-24 16:13:40,995 - INFO - Начинается тест test_task_9_update_voucher_status
+2024-10-24 16:13:40,999 - INFO - Статус ваучера с ID 1 обновлен на 'одобрен'
+2024-10-24 16:13:41,000 - INFO - Тест test_task_9_update_voucher_status завершен успешно
+2024-10-24 16:14:03,950 - INFO - Настройка тестов E2E началась
+2024-10-24 16:14:04,083 - INFO - Creating tables...
+2024-10-24 16:14:04,198 - INFO - Tables created.
+2024-10-24 16:14:04,208 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:04,208 - INFO - Начинается тест test_task_1_i
+2024-10-24 16:14:04,213 - INFO - Вывод test_task_1_i: login                 salt    hashed_password    surname    firstname    patronymic    date_of_birth    sex      mobile_phone  email                  type_role
+--------------------  ------  -----------------  ---------  -----------  ------------  ---------------  -----  --------------  ---------------------  -----------
+ivanov_44fa4a0f-c070                             Иванов     Иван         Иванович      1990-01-01       м          1234567890  ivanov123@example.com  художник
+
+2024-10-24 16:14:04,214 - INFO - Тест test_task_1_e2e завершен успешно
+2024-10-24 16:14:04,282 - INFO - Creating tables...
+2024-10-24 16:14:04,395 - INFO - Tables created.
+2024-10-24 16:14:04,406 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:04,477 - INFO - Creating tables...
+2024-10-24 16:14:04,585 - INFO - Tables created.
+2024-10-24 16:14:04,595 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:04,667 - INFO - Creating tables...
+2024-10-24 16:14:04,772 - INFO - Tables created.
+2024-10-24 16:14:04,782 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:04,862 - INFO - Creating tables...
+2024-10-24 16:14:04,973 - INFO - Tables created.
+2024-10-24 16:14:04,983 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:04,983 - INFO - Starting test_task_5_i
+2024-10-24 16:14:04,989 - INFO - Voucher with id 1 has been deleted successfully.
+2024-10-24 16:14:04,991 - INFO - Visitor with id 1 has been deleted successfully.
+2024-10-24 16:14:05,060 - INFO - Creating tables...
+2024-10-24 16:14:05,170 - INFO - Tables created.
+2024-10-24 16:14:05,179 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:05,184 - INFO - Вывод функции:
+  id    price  description
+   2      100  Описание
+2024-10-24 16:14:05,255 - INFO - Creating tables...
+2024-10-24 16:14:05,369 - INFO - Tables created.
+2024-10-24 16:14:05,379 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:05,380 - INFO - Starting task_7 function
+2024-10-24 16:14:05,380 - INFO - User entered id: 1
+2024-10-24 16:14:05,380 - INFO - Executing database query...
+2024-10-24 16:14:05,382 - INFO - Query result: [{'id': 1, 'login': 'ivanov_21989a6d-7c37', 'days': 5, 'pictures': 3, 'status': 'ждет', 'price': Decimal('100'), 'ticket_num': None, 'id_visitor': 1, 'id_pricelist': 1, 'is_relevant': None}]
+2024-10-24 16:14:05,382 - INFO - Displaying result in table format
+2024-10-24 16:14:05,382 - INFO - Finished task_7 function
+2024-10-24 16:14:05,451 - INFO - Creating tables...
+2024-10-24 16:14:05,564 - INFO - Tables created.
+2024-10-24 16:14:05,575 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:05,576 - INFO - Starting task_7 function
+2024-10-24 16:14:05,576 - INFO - User entered id: 999
+2024-10-24 16:14:05,576 - INFO - Executing database query...
+2024-10-24 16:14:05,577 - INFO - Query result: []
+2024-10-24 16:14:05,578 - WARNING - Запись с id=999 не найдена.
+2024-10-24 16:14:05,578 - INFO - Finished task_7 function
+2024-10-24 16:14:05,649 - INFO - Creating tables...
+2024-10-24 16:14:05,765 - INFO - Tables created.
+2024-10-24 16:14:05,775 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:05,776 - INFO - Начинается тест test_task_8_i
+2024-10-24 16:14:05,780 - INFO - Пользователь ввел id: 1
+2024-10-24 16:14:05,962 - INFO - Creating tables...
+2024-10-24 16:14:06,074 - INFO - Tables created.
+2024-10-24 16:14:06,084 - INFO - Тестовая среда настроена.
+2024-10-24 16:14:06,085 - INFO - Начинается тест test_task_9_update_voucher_status
+2024-10-24 16:14:06,089 - INFO - Статус ваучера с ID 1 обновлен на 'одобрен'
+2024-10-24 16:14:06,090 - INFO - Тест test_task_9_update_voucher_status завершен успешно
